@@ -35,7 +35,7 @@ export function CategoryPieChart() {
           </Pie>
           <Tooltip 
             contentStyle={{ borderRadius: '8px', border: '1px solid #e4e4e7', backgroundColor: '#ffffff' }}
-            formatter={(value: number) => [`${value} items`, 'Sales']}
+            formatter={(value) => [`${Number(value)} items`, 'Sales']}
           />
           <Legend iconType="circle" />
         </PieChart>
