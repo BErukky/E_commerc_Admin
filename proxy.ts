@@ -3,23 +3,12 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const authMiddleware = withAuth(
-  function middleware(req) {
-    // If the user is authenticated and visits /login, redirect to /dashboard
-    if (req.nextUrl.pathname.startsWith("/login")) {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
-    }
+  function middleware() {
     return NextResponse.next();
   },
   {
     callbacks: {
-      authorized: ({ req, token }) => {
-        // Allow unauthenticated access to /login
-        if (req.nextUrl.pathname.startsWith("/login")) {
-          return true;
-        }
-        // Dashboard routes require a valid token
-        return !!token;
-      },
+      authorized: ({ token }) => !!token,
     },
     pages: {
       signIn: "/login",
@@ -34,5 +23,5 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   // Only run on dashboard and login routes — never on /api/auth/* to avoid loops
-  matcher: ["/dashboard/:path*", "/login"],
+  matcher: ["/dashboard/:path*"],
 };
