@@ -47,7 +47,7 @@ export function SalesChart() {
             cursor={{ fill: 'rgba(228, 228, 231, 0.4)' }}
             contentStyle={{ borderRadius: '8px', border: '1px solid #e4e4e7', backgroundColor: '#ffffff' }}
             labelStyle={{ color: '#18181b', fontWeight: 'bold' }}
-            formatter={(value: number) => [`₦${value}`, 'Revenue']}
+            formatter={(value) => [`₦${value}`, 'Revenue']}
           />
           <Bar dataKey="total" fill="#3b82f6" radius={[4, 4, 0, 0]} />
         </BarChart>
